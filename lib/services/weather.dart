@@ -10,7 +10,7 @@ class WeatherModel {
 
   Future<dynamic> getCityWeather(String cityName) async{
     var url = '$openWeatherURL?q=$cityName&APPID=$apiKey&units=metric';
-    NetworkHelper nets = NetworkHelper(url);
+    NetworkHelper nets = NetworkHelper("${openWeatherURL}lat=$latitude&lon=$longitude&APPID=$apiKey&units=metric");
     var weatherData = await nets.getData();
     return weatherData;
   }
