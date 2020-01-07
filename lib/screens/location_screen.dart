@@ -1,10 +1,9 @@
-import 'package:clima/services/weather.dart';
-import 'package:flutter/material.dart';
-import 'package:clima/utilities/constants.dart';
 import 'package:clima/screens/city_screen.dart';
+import 'package:clima/services/weather.dart';
+import 'package:clima/utilities/constants.dart';
+import 'package:flutter/material.dart';
 
 class LocationScreen extends StatefulWidget {
-
   final locationWeather;
 
   LocationScreen({this.locationWeather});
@@ -27,9 +26,8 @@ class _LocationScreenState extends State<LocationScreen> {
     updateUI(widget.locationWeather);
   }
 
-  void updateUI(dynamic weatherData){
-
-    if (weatherData == null){
+  void updateUI(dynamic weatherData) {
+    if (weatherData == null) {
       temperature = 0;
       weatherIcon = 'Error';
       weatherMessage = "Unable to get weather data";
@@ -44,7 +42,6 @@ class _LocationScreenState extends State<LocationScreen> {
 
     print(temperature);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +75,16 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () async{
-                      var typedName = await Navigator.push(context, MaterialPageRoute(builder: (context){
+                    onPressed: () async {
+                      var typedName = await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return CityScreen();
                       }));
+                      print(typedName);
 
-                      if (typedName != null){
-                        var weatherData = await weather.getCityWeather(typedName);
+                      if (typedName != null) {
+                        var weatherData =
+                            await weather.getCityWeather(typedName);
                         updateUI(weatherData);
                       }
                     },
